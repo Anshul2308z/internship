@@ -1,6 +1,3 @@
-// this is a protected page, only accessible to authenticated users
-
-
 import { getServerSession } from "next-auth"
 
 export default async function Dashboard() {

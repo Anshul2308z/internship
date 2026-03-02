@@ -4,6 +4,9 @@ import { ReactNode } from "react"
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Navbar from "./ui/Navbar";
+import Footer from "./ui/Footer";
+import Hero from "./ui/Hero";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,7 +32,12 @@ export default function RootLayout({
   return (
     <html>
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <Hero/>
+          <Navbar />
+          {children}
+          < Footer/>
+          </Providers>
       </body>
     </html>
   )
