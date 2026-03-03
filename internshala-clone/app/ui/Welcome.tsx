@@ -12,7 +12,7 @@ const welcome = () => {
      username = session.user?.name?.split(" ")[0]?.charAt(0).toUpperCase() + session.user?.name?.split(" ")[0]?.slice(1);
     }
       return (
-    <section className="bg-gray-100 py-12">
+      <section className="bg-gray-100 py-12">
       <div className="max-w-7xl mx-auto px-6 text-center">
         <h1 className="text-4xl font-bold mb-4">Welcome back, {
           username
@@ -21,13 +21,14 @@ const welcome = () => {
           KEEP <b>LEARNING</b>, KEEP <b> GROWING</b>. Explore new internships and career opportunities.
         </p>
         <a
-          href="#"
+          href="/internshipds" 
           className="px-6 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors"
         >
           Internships for you
         </a>
       </div>
     </section>
+
   )
   }
   
