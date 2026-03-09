@@ -1,9 +1,8 @@
-import { parse } from "node:path";
 import Listing from "../models/Listing";
 
 import { Request, Response } from "express"; 
 import { IListing } from "../types/Listing";
-import isAdmin from "../middlewares/IsAdmin";
+import mongoose from "mongoose";
 
 //Contains getAllListings, getListingById, getListings (with pagination and filtering by type) 
 
@@ -24,19 +23,6 @@ export const getAllListings = async (req: Request, res: Response) => {
 // @desc    Get listing by ID
 // @route   GET /api/listings/:id
 // @access  Public
-
-export const getListingById = async (req: Request, res: Response) => {
-  try {
-    const listing = await Listing.findById(req.params.id);
-    if (!listing) {
-      return res.status(404).json({ success: false, message: "Listing not found" });
-    }
-    res.status(200).json({ success: true, listing });
-  } catch (error) {
-    console.error("Error fetching listing:", error);
-    res.status(500).json({ success: false, message: "Server Error" });
-  }
-};
 
 export const getListings = async (req: Request, res: Response) => {
   try {
@@ -82,3 +68,31 @@ export async function createListing(req: Request, res: Response) {
     res.status(500).json({ success: false, message: "Server Error" });
   }
 }
+
+
+export const getListingById = async (req: Request, res: Response) => {
+
+  try {
+    const { id } = req.params;
+    
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: "Invalid listing id" });
+    }
+    const listing = await Listing.findById(id);
+
+    if (!listing) {
+      return res.status(404).json({ message: "Listing not found" });
+    }
+
+    const obj = listing.toObject();
+
+    res.json({
+      ...obj,
+      id: obj._id.toString(),
+      _id: undefined
+    });
+
+  } catch (err) {
+    res.status(500).json({ message: "Server error" });
+  }
+};

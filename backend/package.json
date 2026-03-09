@@ -1,9 +1,11 @@
 {
+	"name": "backend",
 	"scripts": {
-		"dev":"npx tsc && node dist/server.js",
+		"dev": "npx tsc && node dist/server.js",
 		"start": "ts-node-dev --respawn --transpile-only src/server.js"
 	},
 	"dependencies": {
+		"@anshul/shared-types": "workspace:*",
 		"bcryptjs": "^3.0.3",
 		"cors": "^2.8.6",
 		"dotenv": "^17.3.1",

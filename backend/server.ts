@@ -6,6 +6,8 @@ import connectDB from './config/db';
 import authRoutes from './routes/Auth';
 import listingRoutes from './routes/List';
 
+import transformMongoDoc  from './middlewares/transformMongo';
+
 import User from './models/User';
 
 const app = express();
@@ -16,6 +18,7 @@ connectDB();
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(transformMongoDoc);
 
 // Routes
 app.use("/api/auth", authRoutes);
