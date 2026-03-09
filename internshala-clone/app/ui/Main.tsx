@@ -3,10 +3,11 @@ import Welcome from "./Welcome";
 
 
 
-const Main = () => {
+const Main = ({children}: {children: React.ReactNode}) => {
   return (
-    <div>
+    <div className="flex-1">
         <Welcome /> 
+        {children}
     </div>
   )
 }

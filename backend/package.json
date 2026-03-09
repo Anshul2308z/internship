@@ -1,4 +1,8 @@
 {
+	"scripts": {
+		"dev":"npx tsc && node dist/server.js",
+		"start": "ts-node-dev --respawn --transpile-only src/server.js"
+	},
 	"dependencies": {
 		"bcryptjs": "^3.0.3",
 		"cors": "^2.8.6",

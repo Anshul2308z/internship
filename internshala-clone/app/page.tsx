@@ -3,8 +3,9 @@ import Welcome from "./ui/Welcome";
 
 export default function Home() {
   return (
-    <>
-    <Main/>
-    </>
+    <div className="min-h-screen flex flex-col">
+    <Main children={<Welcome/>}/>
+    </div>
   );
 }
+  

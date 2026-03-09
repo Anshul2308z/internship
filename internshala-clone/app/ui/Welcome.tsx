@@ -21,7 +21,7 @@ const welcome = () => {
           KEEP <b>LEARNING</b>, KEEP <b> GROWING</b>. Explore new internships and career opportunities.
         </p>
         <a
-          href="/internshipds" 
+          href="/internships" 
           className="px-6 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors"
         >
           Internships for you

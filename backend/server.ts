@@ -3,3 +3,42 @@ import cors from 'cors';
 
 import connectDB from './config/db';
 
+import authRoutes from './routes/Auth';
+import listingRoutes from './routes/List';
+
+import User from './models/User';
+
+const app = express();
+
+// Connect to MongoDB
+connectDB();
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Routes
+app.use("/api/auth", authRoutes);
+app.use("/api/fetch", listingRoutes);
+
+(async () => {
+    try{
+        await User.create({
+            name: "Anshul",
+            email: "anshulusesmail@gmail.com",
+            role: "admin",
+        })
+    }
+    catch(error){
+        console.error("Error creating admin user:", error);
+        }
+})
+();
+
+app.get("/", (req,res)=>{
+    res.send("Hello World");
+})
+
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));  

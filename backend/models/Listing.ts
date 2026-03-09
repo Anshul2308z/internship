@@ -1,44 +1,9 @@
 import { Schema, model, Document, Types } from "mongoose";
 
+
+import { IListing } from "../types/Listing";
 //interface for listing document- Intern or Job 
-export interface IListing extends Document {
-  heading: string;
-  company: string;
-  summary: string;
-  workFromHome: boolean;
-  compensation: number;
-  type: "intern" | "job";
-  tags: string[];
-  postInternPromise?: string;
-  createdBy: Types.ObjectId;
 
-  details?: {
-    startDate?: string;
-    ctcRange?: {
-      min: number;
-      max: number;
-    };
-    experienceRequired?: number;
-    applyBy?: Date;
-    jobType?: string;
-    applicantsCount?: number;
-    openings?: number;
-
-    responsibilities?: string[];
-    benefits?: string[];
-    skillsRequired?: string[];
-
-    companyInfo?: {
-      website?: string;
-      description?: string;
-      hiringSince?: string;
-      opportunitiesPosted?: number;
-      candidatesHired?: number;
-    };
-  };
-
-  createdAt: Date;
-}
 
 //Schema implementation
 const listingSchema = new Schema<IListing>(
@@ -51,6 +16,7 @@ const listingSchema = new Schema<IListing>(
     type: { type: String, enum: ["intern", "job"], required: true },
     tags: { type: [String], default: [] },
     postInternPromise: { type: String },
+    category: { type: String, required: true },
     createdBy: {
       type: Schema.Types.ObjectId,
       ref: "User",
@@ -85,4 +51,8 @@ const listingSchema = new Schema<IListing>(
   { timestamps: true }
 );
 
+listingSchema.index({ createdAt: -1 });
+
 export default model<IListing>("Listing", listingSchema);
+
+
