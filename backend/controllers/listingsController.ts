@@ -70,7 +70,10 @@ export async function createListing(req: Request, res: Response) {
 }
 
 
-export const getListingById = async (req: Request, res: Response) => {
+export const getListingById = async (
+  req: Request<{ id: string }>,
+  res: Response
+)=> {
 
   try {
     const { id } = req.params;
