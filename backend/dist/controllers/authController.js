@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SyncUser = void 0;
-const Users_1 = __importDefault(require("../models/Users"));
+const User_1 = __importDefault(require("../models/User"));
 // @desc    Sync User After Google Login
 // @route   POST /api/auth/sync
 // @access  Public
@@ -12,9 +12,9 @@ const SyncUser = async (req, res) => {
     try {
         const { name, email, image } = req.body;
         // Anyone could fake email in Postman. In production, verify the token from Google and extract email from it.
-        let user = await Users_1.default.findOne({ email });
+        let user = await User_1.default.findOne({ email });
         if (!user) {
-            user = new Users_1.default({ name, email, image });
+            user = new User_1.default({ name, email, image });
             await user.save();
         }
         res.status(200).json({ success: true, user });

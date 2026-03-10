@@ -24,20 +24,6 @@ app.use(transformMongoDoc);
 app.use("/api/auth", authRoutes);
 app.use("/api/fetch", listingRoutes);
 
-(async () => {
-    try{
-        await User.create({
-            name: "Anshul",
-            email: "anshulusesmail@gmail.com",
-            role: "admin",
-        })
-    }
-    catch(error){
-        console.error("Error creating admin user:", error);
-        }
-})
-();
-
 app.get("/", (req,res)=>{
     res.send("Hello World");
 })

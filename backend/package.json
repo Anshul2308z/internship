@@ -2,7 +2,8 @@
 	"name": "backend",
 	"scripts": {
 		"dev": "npx tsc && node dist/server.js",
-		"start": "ts-node-dev --respawn --transpile-only src/server.js"
+		"start": "ts-node-dev --respawn --transpile-only src/server.js",
+		"seed": "ts-node scripts/seed.ts"
 	},
 	"dependencies": {
 		"@anshul/shared-types": "workspace:*",

@@ -1,22 +1,6 @@
+import { Listing, User } from "@anshul/shared-types";
 
-type Intern = {
-  id: string;
-  heading: string;
-  summary: string;
-  workFromHome: boolean;
-  stiphend: number;
-  tags: string[];
-  postInternPromise: string;
-}
+export type Intern = Listing & { type: "intern" };
+export type Job = Listing & { type: "job" };
 
-type Job = { 
-  id: string;
-  heading: string;
-  summary: string;
-  workFromHome: boolean;
-  salary: number;
-  tags: string[];
-  postInternPromise: string;
-}
-
-export type { Intern, Job }; 
+export type { User };

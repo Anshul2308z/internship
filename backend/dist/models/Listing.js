@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
+//interface for listing document- Intern or Job 
 //Schema implementation
 const listingSchema = new mongoose_1.Schema({
     heading: { type: String, required: true },

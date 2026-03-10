@@ -37,7 +37,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-gray-900 text-gray-300 px-6 md:px-16 py-12 absolute bottom-0 w-full">
+    <footer className="bg-gray-900 text-gray-300 px-6 md:px-16 py-12">
       {/* Top Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
         {footerLinks.map((section) => (

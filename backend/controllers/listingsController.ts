@@ -11,12 +11,34 @@ import mongoose from "mongoose";
 // @access  Public
 
 export const getAllListings = async (req: Request, res: Response) => {
+  const type = req.query.type as string | undefined;
+
+  if (type && !["intern", "job"].includes(type)) {
+    return res
+      .status(400)
+      .json({ success: false, message: "Invalid type parameter" });
+  }
+
   try {
-    const listings = await Listing.find().sort({ createdAt: -1 });
-    res.status(200).json({ success: true, listings });
+    const filter: any = {};
+
+    if (type) {
+      filter.type = type;
+    }
+
+    const listings = await Listing.find(filter).sort({ createdAt: -1 });
+
+    res.status(200).json({
+      success: true,
+      listings,
+    });
   } catch (error) {
     console.error("Error fetching listings:", error);
-    res.status(500).json({ success: false, message: "Server Error" });
+
+    res.status(500).json({
+      success: false,
+      message: "Server Error",
+    });
   }
 };
 

@@ -5,8 +5,7 @@ import Welcome from "./Welcome";
 
 const Main = ({children}: {children: React.ReactNode}) => {
   return (
-    <div className="flex-1">
-        <Welcome /> 
+    <div >
         {children}
     </div>
   )
