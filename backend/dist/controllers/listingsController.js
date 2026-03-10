@@ -12,13 +12,37 @@ const mongoose_1 = __importDefault(require("mongoose"));
 // @route   GET /api/listings
 // @access  Public
 const getAllListings = async (req, res) => {
+    const type = req.query.type;
+    if (type && !["intern", "job"].includes(type)) {
+        return res
+            .status(400)
+            .json({ success: false, message: "Invalid type parameter" });
+    }
     try {
-        const listings = await Listing_1.default.find().sort({ createdAt: -1 });
-        res.status(200).json({ success: true, listings });
+        const filter = {};
+        if (type) {
+            filter.type = type;
+        }
+        const listings = await Listing_1.default.find(filter).sort({ createdAt: -1 });
+        const formatted = listings.map((listing) => {
+            const obj = listing.toObject();
+            return {
+                ...obj,
+                id: obj._id.toString(),
+                _id: undefined
+            };
+        });
+        res.status(200).json({
+            success: true,
+            listings: formatted,
+        });
     }
     catch (error) {
         console.error("Error fetching listings:", error);
-        res.status(500).json({ success: false, message: "Server Error" });
+        res.status(500).json({
+            success: false,
+            message: "Server Error",
+        });
     }
 };
 exports.getAllListings = getAllListings;

@@ -28,9 +28,18 @@ export const getAllListings = async (req: Request, res: Response) => {
 
     const listings = await Listing.find(filter).sort({ createdAt: -1 });
 
+        const formatted = listings.map((listing) => {
+      const obj = listing.toObject();
+      return {
+        ...obj,
+        id: obj._id.toString(),
+        _id: undefined
+      };
+    });
+
     res.status(200).json({
       success: true,
-      listings,
+      listings: formatted,
     });
   } catch (error) {
     console.error("Error fetching listings:", error);
