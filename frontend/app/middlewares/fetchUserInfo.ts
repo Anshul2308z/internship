@@ -1,13 +1,27 @@
+export async function fetchUserInfo(user: {
+  name?: string | null
+  email?: string | null
+  image?: string | null
+}) {
+  if (!user?.email) {
+    throw new Error("No user email found")
+  }
 
-export async function fetchUserInfo() {
-  const currentuser = await fetch("https://localhost:3000/api/user",{
-    method: "GET",
+  const res = await fetch("http://localhost:5000/api/auth/sync", {
+    method: "POST",
     headers: {
       "Content-Type": "application/json"
-    }
+    },
+    body: JSON.stringify({
+      name: user.name,
+      email: user.email,
+      image: user.image
+    })
   })
 
-    const data = await currentuser.json();
-    return data;
+  if (!res.ok) {
+    throw new Error("Failed to sync user")
+  }
 
+  return res.json()
 }
