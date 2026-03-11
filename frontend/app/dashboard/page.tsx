@@ -8,8 +8,11 @@ export default async function Dashboard() {
   if (!session) {
     redirect("/")
   }
-
+  if (!session?.user) {
+    redirect("/")
+  }
   const user = await fetchUserInfo(session.user)
+
 
   return (
     <div className="min-h-screen bg-gray-100 px-6 py-10 ">
