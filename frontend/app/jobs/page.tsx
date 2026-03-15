@@ -2,6 +2,8 @@ import { ListingList } from '../ui/Cards/ListCard';
 import { fetchListings } from '../middlewares/fetchListings';
 import FilterLayout from '../ui/Cards/filteredLayout';
 
+export const dynamic = "force-dynamic"
+
 export default async function JobsPage() {
   const jobs = await fetchListings({ type: "job" });
 
