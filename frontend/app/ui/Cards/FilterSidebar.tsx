@@ -1,6 +1,6 @@
 export function FilterSidebar() {
   return (
-    <aside className="w-full md:w-80 bg-white rounded-xl shadow-sm p-6 space-y-6 border">
+    <aside className="w-full bg-white rounded-xl shadow-sm p-6 space-y-6 border">
       {/* Header */}
       <div className="flex items-center justify-between">
         <h2 className="font-semibold text-lg">Filters</h2>

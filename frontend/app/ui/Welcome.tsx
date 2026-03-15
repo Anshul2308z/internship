@@ -2,6 +2,7 @@
 
 import { signIn, signOut, useSession } from "next-auth/react"
 import { AuthButton } from "./Navbar";
+import Link from "next/link";
 
 const welcome = () => {
   const { data: session } = useSession();
@@ -20,12 +21,20 @@ const welcome = () => {
         <p className="text-lg text-gray-700 mb-8">
           KEEP <b>LEARNING</b>, KEEP <b> GROWING</b>. Explore new internships and career opportunities.
         </p>
-        <a
+        <div className="flex justify-center gap-4">
+        <Link
           href="/internships" 
           className="px-6 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors"
         >
           Internships for you
-        </a>
+        </Link>
+          <Link
+          href="/dashboard" 
+          className="px-6 py-3 rounded-lg bg-black text-white hover:bg-blue-700 transition-colors"
+        >
+          Dashboard
+        </Link>
+        </div>
       </div>
     </section>
 

@@ -1,64 +1,91 @@
-'use client';
+'use client'
 
+import { useState } from "react"
 import { signIn, signOut, useSession } from "next-auth/react"
-import Link from "next/link";
+import Link from "next/link"
 
 export function AuthButton() {
   const { data: session } = useSession()
 
   if (session) {
-    return (
-      <>
-        <button onClick={() => signOut()}>Logout</button>
-      </>
-    )
+    return <button onClick={() => signOut()}>Logout</button>
   }
 
   return <button onClick={() => signIn("google")}>Login</button>
 }
 
 const Navbar = () => {
+  const [open, setOpen] = useState(false)
+
   return (
     <nav className="w-full bg-white shadow-sm border-b">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        
+
         {/* Logo */}
-        <div className="text-xl font-bold tracking-tight">
-          <Link href="/">
+        <Link href="/" className="text-xl font-bold tracking-tight">
           Internshala
-          </Link>
-        </div>
+        </Link>
 
-        {/* Navigation Links */}
-        <div className="flex items-center gap-8">
-
-            <div className="hidden md:flex items-center gap-6">
-                                
-          <Link href="/internships" className="text-gray-700 hover:text-black transition-colors">
+        {/* Desktop Nav */}
+        <div className="hidden md:flex items-center gap-8">
+          <Link href="/internships" className="text-gray-700 hover:text-black">
             Internships
           </Link>
-          <Link href="#" className="text-gray-700 hover:text-black transition-colors">
+
+          <Link href="#" className="text-gray-700 hover:text-black">
             Courses
           </Link>
-          <Link href="/jobs" className="text-gray-700 hover:text-black transition-colors">
+
+          <Link href="/jobs" className="text-gray-700 hover:text-black">
             Jobs
           </Link>
-        
+
+          <AuthButton />
         </div>
 
-            
-
-          {/* Contrast Button Link */}
-          <Link
-            href="#"
-            className="px-4 py-2 rounded-lg bg-black text-white hover:bg-gray-800 transition-colors"
+        {/* Hamburger Button */}
+        <button
+          className="md:hidden"
+          onClick={() => setOpen(!open)}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
           >
-            <AuthButton />
-          </Link>
-        </div>
+            {open ? (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            ) : (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            )}
+          </svg>
+        </button>
       </div>
-    </nav>
-  );
-};
 
-export default Navbar;
+      {/* Mobile Menu */}
+      {open && (
+        <div className="md:hidden border-t bg-white">
+          <div className="flex flex-col gap-4 px-6 py-4">
+
+            <Link href="/internships">Internships</Link>
+
+            <Link href="#">Courses</Link>
+
+            <Link href="/jobs">Jobs</Link>
+
+            <AuthButton />
+
+          </div>
+        </div>
+      )}
+    </nav>
+  )
+}
+
+export default Navbar

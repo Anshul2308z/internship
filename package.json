@@ -1,5 +1,6 @@
 {
 	"dependencies": {
-		"@anshul/shared-types": "workspace:*"
+		"@anshul/shared-types": "workspace:*",
+		"dotenv": "^17.3.1"
 	}
 }

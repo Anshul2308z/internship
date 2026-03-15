@@ -1,3 +1,8 @@
+import dotenv from "dotenv";
+
+dotenv.config();
+
+
 export async function fetchUserInfo(user: {
   name?: string | null
   email?: string | null
@@ -7,7 +12,7 @@ export async function fetchUserInfo(user: {
     throw new Error("No user email found")
   }
 
-  const res = await fetch("http://localhost:5000/api/auth/sync", {
+  const res = await fetch(`${process.env.SERVER_URL}/api/auth/sync`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
