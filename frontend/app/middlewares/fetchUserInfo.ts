@@ -27,6 +27,8 @@ export async function fetchUserInfo(user: {
   })
 
   if (!res.ok) {
+    const text = await res.text()
+    console.log("SYNC ERROR:", text)
     throw new Error("Failed to sync user")
   }
 
