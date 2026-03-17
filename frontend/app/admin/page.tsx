@@ -7,13 +7,13 @@ const AdminUI = () => {
   )
 }
 
-export default AdminUI
-
-const page = () => {
+const Page = () => {
   return (
-    <>
-    <Main children={<AdminUI/>}/>
-    </>
+    <Main>
+      <AdminUI/>
+    </Main>
   )
 }
+
+export default Page
 

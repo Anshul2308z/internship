@@ -1,32 +1,44 @@
 "use client";
 
 import useEmblaCarousel from "embla-carousel-react";
-import { BannerControls } from "./BannerControls"
+import { BannerControls } from "./BannerControls";
 
-import { banners } from "./bannerData"
-import { BannerCard } from "./BannerCard"
+import { banners } from "./bannerData";
+import { BannerCard } from "./BannerCard";
 
 export function BannerCarousel() {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     align: "start",
-  })
+    skipSnaps: false,
+    dragFree: true,
+  });
+
   return (
-    <section className="max-w-6xl mx-auto mt-12">
+    <section className="mx-auto mt-2 w-full max-w-6xl px-4 pb-2 sm:mt-4 sm:px-6 lg:px-8">
       
-      <h2 className="text-2xl font-bold text-center mb-8">
+      <h2 className="mb-5 text-center text-xl font-bold sm:mb-8 sm:text-2xl">
         Trending on Internshala 🔥
       </h2>
 
+      {/* ✅ FIX 1: padding + overflow */}
       <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex gap-6">
+        <div>
+        
+        {/* ✅ FIX 2: responsive gap + touch behavior */}
+        <div className="flex touch-pan-y gap-3 sm:gap-4 md:gap-6">
           {banners.map((banner) => (
             <BannerCard key={banner.id} banner={banner} />
           ))}
         </div>
+        </div>
       </div>
-      <BannerControls emblaApi={emblaApi} />
+
+      {/* ✅ FIX 3: hide arrows on mobile */}
+      <div className="hidden md:block">
+        <BannerControls emblaApi={emblaApi} />
+      </div>
 
     </section>
-  )
+  );
 }

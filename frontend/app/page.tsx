@@ -4,9 +4,11 @@ import Welcome from "./ui/Welcome";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col">
-    <Main children={<Welcome/>}/>
-    <BannerCarousel/>
+    <div className="flex min-h-screen flex-col gap-6 sm:gap-8">
+      <Main>
+        <Welcome/>
+      </Main>
+      <BannerCarousel/>
     </div>
   );
 }

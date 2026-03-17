@@ -19,10 +19,10 @@ const Navbar = () => {
 
   return (
     <nav className="w-full bg-white shadow-sm border-b">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-3 sm:px-6 sm:py-4">
 
         {/* Logo */}
-        <Link href="/" className="text-xl font-bold tracking-tight">
+        <Link href="/" className="text-lg font-bold tracking-tight sm:text-xl">
           Internshala
         </Link>
 
@@ -47,6 +47,7 @@ const Navbar = () => {
         <button
           className="md:hidden"
           onClick={() => setOpen(!open)}
+          aria-label="Toggle navigation menu"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -71,13 +72,13 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {open && (
         <div className="md:hidden border-t bg-white">
-          <div className="flex flex-col gap-4 px-6 py-4">
+          <div className="flex flex-col gap-4 px-4 py-4 sm:px-6">
 
-            <Link href="/internships">Internships</Link>
+            <Link href="/internships" onClick={() => setOpen(false)}>Internships</Link>
 
-            <Link href="#">Courses</Link>
+            <Link href="#" onClick={() => setOpen(false)}>Courses</Link>
 
-            <Link href="/jobs">Jobs</Link>
+            <Link href="/jobs" onClick={() => setOpen(false)}>Jobs</Link>
 
             <AuthButton />
 

@@ -10,7 +10,7 @@ export function BannerControls({ emblaApi }: Props) {
   if (!emblaApi) return null
 
   return (
-    <div className="flex justify-center gap-4 mt-6">
+    <div className="hidden md:flex justify-center gap-4 mt-6">
       <button
         onClick={() => emblaApi.scrollPrev()}
         className="px-4 py-2 bg-gray-200 rounded"

@@ -1,8 +1,3 @@
-
-import Welcome from "./Welcome";
-
-
-
 const Main = ({children}: {children: React.ReactNode}) => {
   return (
     <div >
