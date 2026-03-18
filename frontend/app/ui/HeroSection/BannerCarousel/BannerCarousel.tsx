@@ -11,7 +11,7 @@ export function BannerCarousel() {
     loop: true,
     align: "start",
     skipSnaps: false,
-    dragFree: true,
+    dragFree: false,
   });
 
   return (
@@ -21,20 +21,14 @@ export function BannerCarousel() {
         Trending on Internshala 🔥
       </h2>
 
-      {/* ✅ FIX 1: padding + overflow */}
       <div className="overflow-hidden" ref={emblaRef}>
-        <div>
-        
-        {/* ✅ FIX 2: responsive gap + touch behavior */}
         <div className="flex touch-pan-y gap-3 sm:gap-4 md:gap-6">
           {banners.map((banner) => (
             <BannerCard key={banner.id} banner={banner} />
           ))}
         </div>
-        </div>
       </div>
 
-      {/* ✅ FIX 3: hide arrows on mobile */}
       <div className="hidden md:block">
         <BannerControls emblaApi={emblaApi} />
       </div>
